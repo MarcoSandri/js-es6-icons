@@ -1,4 +1,4 @@
-[
+const icons = [
 	{
 		name: 'cat',
 		prefix: 'fa-',
@@ -112,3 +112,44 @@
 		color: 'blue'
 	}
 ];
+
+let filter = document.getElementById("filter")
+let container = document.getElementById("icons-container")
+
+showIconArray(icons, container);
+
+filter.addEventListener('change', function(){
+
+    let select = this.value;
+
+    if(select == "all") {
+        showIconArray(icons, container);
+    } else{
+        let filtered = icons.filter((icona) => {
+            if(icona.type == select) {
+                return true;
+         }
+         return false;
+        });
+        
+        showIconArray(filtered, container);
+    }
+
+});
+
+
+function showIconArray(array, container) {
+    let string = "";
+    array.forEach((icona) => {
+        
+        label = icona.name;
+
+        string += ` <div class="icon">
+                        <i style="color:${icona.color}" class="${icona.family} ${icona.prefix}${icona.name}"></i>
+                        <div class="icon-text">${label.toUpperCase()}</div>
+                    </div>
+                    `
+    
+    });
+    container.innerHTML = string;
+};
