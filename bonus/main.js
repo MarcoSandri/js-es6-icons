@@ -113,13 +113,15 @@ const icons = [
 	}
 ];
 
-let filter = document.getElementById("filter")
-let container = document.getElementById("icons-container")
+let filter = document.getElementById("filter");
+let container = document.getElementById("icons-container");
 
-let types = getKeyValues(icons, 'type')
-console.log(types);
+// Array con i diversi valori di type
+let types = getKeyValues(icons, 'type');
 
-getFilters(filter, types)
+// Creo i filtri
+getFilters(filter, types);
+
 showIconArray(icons, container);
 
 filter.addEventListener('change', function(){
