@@ -116,10 +116,9 @@ const icons = [
 let filter = document.getElementById("filter")
 let container = document.getElementById("icons-container")
 
+console.log(getKeyValues(icons, type));
+
 showIconArray(icons, container);
-
-
-
 
 filter.addEventListener('change', function(){
 
@@ -166,3 +165,16 @@ function getColor () {
     }
     return color;
 };
+
+function getKeyValues(array, key) {
+	let allTypes = [];
+	differentKey = array[0][key];
+	allTypes.push(differentKey);
+	for(let i = 0; i < array.length; i++) {
+		if(differentKey != array[i][key]){
+			differentKey = array[i][key];
+			allTypes.push(differentKey);
+		}
+	}
+	return allTypes;
+}
