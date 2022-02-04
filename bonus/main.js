@@ -116,8 +116,10 @@ const icons = [
 let filter = document.getElementById("filter")
 let container = document.getElementById("icons-container")
 
-console.log(getKeyValues(icons, type));
+let types = getKeyValues(icons, 'type')
+console.log(types);
 
+getFilters(filter, types)
 showIconArray(icons, container);
 
 filter.addEventListener('change', function(){
@@ -149,12 +151,13 @@ function showIconArray(array, container) {
                         <i style="color:${icona.color}" class="${icona.family} ${icona.prefix}${icona.name}"></i>
                         <div class="icon-text">${label.toUpperCase()}</div>
                     </div>
-                    `
+                    `;
     
     });
     container.innerHTML = string;
 };
 
+// getColor restiuisce un colore esadecimale randomico
 function getColor () {
     let code = ['0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F'];
     let color = "#"
@@ -166,6 +169,7 @@ function getColor () {
     return color;
 };
 
+// getKeyValues restituisce tutti i diversi valori di un dato parametro di un dato array di oggetti
 function getKeyValues(array, key) {
 	let allTypes = [];
 	differentKey = array[0][key];
@@ -177,4 +181,14 @@ function getKeyValues(array, key) {
 		}
 	}
 	return allTypes;
+}
+
+// getFilters dato un tag select e un array di stringhe inserisce nel dom le opzioni per ogni stringa dell'array
+function getFilters (filter, array) {
+	let string = `<option value="all">all</option>`;
+	for(let i = 0; i < array.length; i++) {
+		string += `<option value="${types[i]}">${types[i]}</option>
+					`;
+	}
+	filter.innerHTML= string;
 }
