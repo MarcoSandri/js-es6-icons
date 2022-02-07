@@ -165,7 +165,8 @@ function getColor () {
     let color = "#"
     for(let i = 0; i < 6; i++) {
 
-        let random = Math.floor(Math.random() * code.length) + 1;
+        let random = Math.floor(Math.random() * (code.length + 1));
+		console.log(random);
         color += code[random];
     }
     return color;
